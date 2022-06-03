@@ -8,6 +8,9 @@ import { ButtonModule } from "./shared/button/button.module";
 import { PageHomeModule } from "./page-home/page-home.module";
 import { LayoutAdminModule } from "./shared/layout-admin/layout-admin.module";
 import { LoginModule } from "./login/login.module";
+import { EditModule } from "./edit/edit.module";
+import { DashboardModule } from "./dashboard/dashboard.module";
+import { CreateModule } from "./create/create.module";
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { LoginModule } from "./login/login.module";
     LayoutAdminModule,
     ButtonModule,
     PageHomeModule,
-    LoginModule
+    LoginModule,
+    EditModule,
+    DashboardModule,
+    CreateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

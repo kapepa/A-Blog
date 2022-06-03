@@ -1,0 +1,18 @@
+.layout{
+  &__header{
+
+  }
+  &__link{
+    color: #000;
+  }
+  &__h{
+    font-weight: bold;
+    &--large{
+      //font-size: toRem(66);
+      font-size: 66px;
+    }
+  }
+  &__content{
+    padding: 10px 0;
+  }
+}

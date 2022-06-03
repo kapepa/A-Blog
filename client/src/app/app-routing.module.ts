@@ -4,6 +4,7 @@ import { LayoutComponent } from "./shared/layout/layout.component";
 import { PageHomeComponent } from "./page-home/page-home.component";
 import { PagePostComponent } from "./page-post/page-post.component";
 import { LayoutAdminComponent } from "./shared/layout-admin/layout-admin.component";
+import { PageErrorComponent } from "./page-error/page-error.component";
 
 const routes: Routes = [
   {
@@ -15,9 +16,11 @@ const routes: Routes = [
     ]
   },{
     path: 'admin',
+    component: LayoutAdminComponent,
     loadChildren: () => import('./shared/layout-admin/layout-admin.module').then(mod => mod.LayoutAdminModule),
-  }
-  // { path: '**', component: PageNotFoundComponent },
+  },
+  { path: '', redirectTo: '/', pathMatch: 'full'},
+  { path: '**', component: PageErrorComponent },
 ];
 
 @NgModule({
