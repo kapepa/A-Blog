@@ -1,1 +1,14 @@
-<p>post works!</p>
+<div class="flex flex-direction-column align-items-center post__frame">
+  <div class="post" *ngFor="let post of posts; index as i">
+    <header class="post__header flex justify-content-between">
+      <h5 class="post__h post__h--average">{{ post.title }}</h5>
+      <small class="post__date">{{ post.date | date }}</small>
+    </header>
+    <div class="post__desc">
+      <small class="post__name">Name: <span class="post__author">{{ post.author }}</span></small>
+    </div>
+    <footer>
+      <app-button [link]="true" [text]="'Open'" [href]="'post/'+post.id" ></app-button>
+    </footer>
+  </div>
+</div>

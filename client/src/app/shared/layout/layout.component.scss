@@ -1,3 +1,4 @@
+@import "../../../mixins.scss";
 .layout{
   &__header{
 
@@ -8,8 +9,7 @@
   &__h{
     font-weight: bold;
     &--large{
-      //font-size: toRem(66);
-      font-size: 66px;
+      font-size: toRem(66);
     }
   }
   &__content{

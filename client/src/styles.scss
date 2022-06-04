@@ -1,9 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-
-@function toRem($value) {
-  $remValue: ($value / 17) + rem;
-  @return $remValue;
-}
+@import "mixins.scss";
 
 *{
   box-sizing: border-box;
@@ -43,6 +39,28 @@ a{
 
 .align-items-center{
   align-items: center;
+}
+
+.justify-content-between{
+  justify-content: space-between;
+}
+
+.btn-def{
+  padding: toRem(5) toRem(10);
+  font-size: toRem(16);
+  border: none;
+  outline: none;
+  color: #fff;
+  background-color: black;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color .25s ease-in;
+  &:hover{
+    background-color: lighten(black, 10%);
+  }
+  &:active{
+    background-color: lighten(black, 25%);
+  }
 }
 
 @media screen and (max-width: 1200px){
