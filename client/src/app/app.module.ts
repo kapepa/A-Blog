@@ -11,10 +11,12 @@ import { LoginModule } from "./login/login.module";
 import { EditModule } from "./edit/edit.module";
 import { DashboardModule } from "./dashboard/dashboard.module";
 import { CreateModule } from "./create/create.module";
+import { PagePostModule } from "./page-post/page-post.module";
+import { PipeModule } from "./pipe/pipe.module";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,10 +25,12 @@ import { CreateModule } from "./create/create.module";
     LayoutAdminModule,
     ButtonModule,
     PageHomeModule,
+    PagePostModule,
     LoginModule,
     EditModule,
     DashboardModule,
     CreateModule,
+    PipeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

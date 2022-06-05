@@ -19,6 +19,6 @@ export class ButtonComponent implements OnInit {
   }
 
   linkClick() {
-    this.router.navigate([this.href]);
+    if( this.href ) this.router.navigate([this.href]);
   }
 }
