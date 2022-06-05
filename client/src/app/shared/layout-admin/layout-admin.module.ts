@@ -6,6 +6,7 @@ import { LoginComponent } from "../../login/login.component";
 import { DashboardComponent } from "../../dashboard/dashboard.component";
 import { CreateComponent } from "../../create/create.component";
 import { EditComponent } from "../../edit/edit.component";
+import { NavAdminModule } from "../nav-admin/nav-admin.module";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
+    NavAdminModule,
   ],
   exports: [RouterModule]
 })
