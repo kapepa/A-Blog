@@ -45,6 +45,10 @@ a{
   justify-content: space-between;
 }
 
+li{
+  list-style-type: none;
+}
+
 .btn-def{
   padding: toRem(5) toRem(10);
   font-size: toRem(16);

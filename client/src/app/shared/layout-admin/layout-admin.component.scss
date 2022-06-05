@@ -1,0 +1,16 @@
+@import "../../../mixins";
+.layout_admin{
+  &__header{
+    background-color: indianred;
+    padding: toRem(12);
+  }
+  &__h{
+    font-weight: bold;
+    &--logo{
+      font-size: toRem(32);
+    }
+  }
+  &__section{
+
+  }
+}

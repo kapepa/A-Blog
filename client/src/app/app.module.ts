@@ -13,6 +13,7 @@ import { DashboardModule } from "./dashboard/dashboard.module";
 import { CreateModule } from "./create/create.module";
 import { PagePostModule } from "./page-post/page-post.module";
 import { PipeModule } from "./pipe/pipe.module";
+import { NavAdminModule } from "./shared/nav-admin/nav-admin.module";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { PipeModule } from "./pipe/pipe.module";
     DashboardModule,
     CreateModule,
     PipeModule,
+    NavAdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

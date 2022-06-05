@@ -1,2 +1,17 @@
-<router-outlet></router-outlet>
-<p>layout-admin works!</p>
+<header class="layout_admin__header">
+  <div class="container">
+    <div class="flex justify-content-between">
+      <a routerLink="/admin">
+        <h1 class="layout_admin__h layout_admin__h--logo">Admin panel</h1>
+      </a>
+      <app-nav-admin></app-nav-admin>
+    </div>
+  </div>
+</header>
+<main class="main">
+  <div class="container">
+    <section class="layout_admin__section">
+      <router-outlet></router-outlet>
+    </section>
+  </div>
+</main>

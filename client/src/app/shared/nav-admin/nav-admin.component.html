@@ -1,0 +1,13 @@
+<nav class="nav-admin flex align-items-center">
+  <ul class="nav-admin__ul flex">
+    <li routerLinkActive="nav-admin__li--active" class="nav-admin__li flex align-items-center">
+      <a class="nav-admin__link" routerLink="/admin/dashboard"> {{'dashboard' | firstUp}} </a>
+    </li>
+    <li routerLinkActive="nav-admin__li--active" class="nav-admin__li flex align-items-center">
+      <a class="nav-admin__link" routerLink="/admin/create"> {{'create'| firstUp}} </a>
+    </li>
+    <li routerLinkActive="nav-admin__li--active" class="nav-admin__li flex align-items-center">
+      <a class="nav-admin__link" (click)="logout($event)" href="#"> {{'logout' | firstUp}} </a>
+    </li>
+  </ul>
+</nav>
