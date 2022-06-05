@@ -1,0 +1,46 @@
+@import "../../mixins";
+.post{
+  &__section{
+    position: static;
+  }
+  &__header{
+    padding-bottom: toRem(10);
+  }
+  &__h{
+    font-weight: bold;
+    &--average{
+      font-size: toRem(32);
+    }
+  }
+  &__info{
+    padding-bottom: toRem(7);
+    gap: toRem(5);
+  }
+  &__link{
+    position: relative;
+    padding-left: 15px;
+    font-size: toRem(18);
+    &::before{
+      content: '';
+      width: 0;
+      height: 0;
+      border-top: toRem(8) solid transparent;
+      border-bottom: toRem(8) solid transparent;
+      border-right: toRem(8) solid black;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+  }
+  &__date{
+    font-weight: bold;
+  }
+  &__article{
+    padding: toRem(7) 0;
+    gap: toRem(7);
+  }
+  &__p{
+    font-size: toRem(17);
+  }
+}

@@ -63,6 +63,18 @@ a{
   }
 }
 
+a{
+  text-decoration: none;
+  color: black;
+  transition: color .25s linear;
+  &:hover{
+    color: lighten(black, 25%);
+  }
+  &:active{
+    color: lighten(black, 25%);
+  }
+}
+
 @media screen and (max-width: 1200px){
   html{ font-size: 16px }
 }
