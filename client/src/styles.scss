@@ -10,6 +10,11 @@
 html{
   background-color: lightcoral;
   font-size: 17px;
+  height: 100%;
+}
+
+body{
+  height: 100%;
 }
 
 a{
@@ -23,6 +28,7 @@ a{
 
 .main{
   padding: 10px;
+  flex-grow: 1;
 }
 
 .flex{
@@ -50,8 +56,6 @@ li{
 }
 
 .btn-def{
-  padding: toRem(5) toRem(10);
-  font-size: toRem(16);
   border: none;
   outline: none;
   color: #fff;
@@ -64,6 +68,17 @@ li{
   }
   &:active{
     background-color: lighten(black, 25%);
+  }
+  &--large{
+    padding: toRem(7) toRem(14);
+    font-size: toRem(18);
+  }
+  &--average{
+    padding: toRem(5) toRem(10);
+    font-size: toRem(16);
+  }
+  &--small{
+
   }
 }
 

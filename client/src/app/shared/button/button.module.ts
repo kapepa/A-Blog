@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './button.component';
-import {RouterModule} from "@angular/router";
+import { RouterModule } from "@angular/router";
+import { PipeModule } from "../../pipe/pipe.module";
 
 
 
@@ -11,7 +12,8 @@ import {RouterModule} from "@angular/router";
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    PipeModule,
   ],
   exports: [
     ButtonComponent

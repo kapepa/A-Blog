@@ -1,17 +1,20 @@
-<header class="layout_admin__header">
-  <div class="container">
-    <div class="flex justify-content-between">
-      <a routerLink="/admin">
-        <h1 class="layout_admin__h layout_admin__h--logo">Admin panel</h1>
-      </a>
-      <app-nav-admin></app-nav-admin>
+<div class="layout_admin flex flex-direction-column">
+  <header class="layout_admin__header">
+    <div class="container">
+      <div class="flex justify-content-between">
+        <a routerLink="/admin">
+          <h1 class="layout_admin__h layout_admin__h--logo">Admin panel</h1>
+        </a>
+        <app-nav-admin></app-nav-admin>
+      </div>
     </div>
-  </div>
-</header>
-<main class="main">
-  <div class="container">
-    <section class="layout_admin__section">
-      <router-outlet></router-outlet>
-    </section>
-  </div>
-</main>
+  </header>
+  <main class="main flex align-items-center">
+    <div class="container">
+      <section class="layout_admin__section">
+        <router-outlet></router-outlet>
+      </section>
+    </div>
+  </main>
+</div>
+
