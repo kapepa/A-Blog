@@ -1,2 +1,14 @@
-<button (click)="linkClick()" *ngIf="!link" class="btn-def">{{text}}</button>
-<a *ngIf="link" class="btn-def" [routerLink]="href">{{text}}</a>
+<button
+  *ngIf="!link"
+  class="btn-def"
+  (click)="linkClick()"
+  [type]="type"
+  [disabled]="disabled"
+  [ngClass]="{ 'btn-def--large': size === 'large', 'btn-def--average': size === 'average', 'btn-def--small': size === 'small' }"
+>{{text | firstUp}}</button>
+<a
+  *ngIf="link"
+  class="btn-def"
+  [routerLink]="href"
+  [ngClass]="{ 'btn-def--large': size === 'large', 'btn-def--average': size === 'average', 'btn-def--small': size === 'small' }"
+>{{text | firstUp}}</a>

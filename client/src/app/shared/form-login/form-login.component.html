@@ -1,0 +1,10 @@
+<div class="flex justify-content-center">
+  <form class="form-login" (submit)="submitForm($event)">
+    <h4 class="form-login__h form-login__h--average">{{'login administrator' | firstUp}}</h4>
+    <app-input *ngFor="let input of inputs" [type]="input.type" [name]="input.name" [label]="input.label"></app-input>
+    <div class="form-login__action flex">
+      <app-button type="submit" text="login" [link]="false" size="large" [disabled]="false"></app-button>
+      <app-button type="reset" text="reset" [link]="false" size="large" ></app-button>
+    </div>
+  </form>
+</div>
