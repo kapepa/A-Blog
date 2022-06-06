@@ -1,5 +1,5 @@
 <div class="input__cell flex flex-direction-column">
-  <label class="input__label">{{label}}:</label>
-  <input class="input" [type]="type" [name]="name">
+  <label [for]="name"  class="input__label">{{label}}:</label>
+  <input class="input" [id]="name" [type]="type" [name]="name">
   <div class="input__error">error</div>
 </div>
