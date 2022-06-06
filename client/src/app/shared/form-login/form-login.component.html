@@ -1,9 +1,19 @@
 <div class="flex justify-content-center">
-  <form class="form-login" (submit)="submitForm($event)">
+  <form class="form-login" (ngSubmit)="onSubmit($event)" [formGroup]="loginForm">
     <h4 class="form-login__h form-login__h--average">{{'login administrator' | firstUp}}</h4>
-    <app-input *ngFor="let input of inputs" [type]="input.type" [name]="input.name" [label]="input.label"></app-input>
+    <div *ngFor="let input of inputs" class="input__cell flex flex-direction-column">
+      <label [for]="input.name"  class="input__label">{{input.label}}:</label>
+      <input class="input" [id]="input.name" [type]="input.type" [name]="input.name" [formControlName]="input.name">
+      <div class="input__error">
+        <ng-container *ngIf="input.data && input.data.touched">
+          <ng-container *ngIf="input.data?.errors?.['email'] ">{{ 'incoming email is wrong' | firstUp }}</ng-container>
+          <ng-container *ngIf="input.data?.errors?.['minlength']">{{ 'set string is short' | firstUp }}</ng-container>
+          <ng-container *ngIf="input.data?.errors?.['required']">{{ 'this field is empty' | firstUp }}</ng-container>
+        </ng-container>
+      </div>
+    </div>
     <div class="form-login__action flex">
-      <app-button type="submit" text="login" [link]="false" size="large" [disabled]="false"></app-button>
+      <app-button type="submit" text="login" [link]="false" size="large" [disabled]="!validForm"></app-button>
       <app-button type="reset" text="reset" [link]="false" size="large" ></app-button>
     </div>
   </form>
