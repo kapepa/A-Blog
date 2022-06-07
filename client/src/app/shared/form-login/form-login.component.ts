@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { IInput } from "../../dto";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import {AuthService} from "../service/auth.service";
+import {} from "../service/http.service";
 
 @Component({
   selector: 'app-form-login',
@@ -25,6 +27,7 @@ export class FormLoginComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -33,8 +36,8 @@ export class FormLoginComponent implements OnInit {
   onSubmit(e: Event) {
     e.preventDefault();
     const values = this.loginForm.value;
-    const form = new FormData();
-    Object.keys(values).forEach(key => form.append(key, values[key]));
+    this.authService.login(values);
+
     // this.router.navigate(['/'])
     // this.restForm();
   }

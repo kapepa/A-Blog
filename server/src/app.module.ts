@@ -4,7 +4,7 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { config } from 'dotenv';
 import { User } from "./user/user.entity";
-import {JwtModule} from "@nestjs/jwt";
+
 
 config();
 
@@ -24,8 +24,6 @@ config();
     UserModule
   ],
   controllers: [],
-  providers: [
-
-  ],
+  providers: [],
 })
 export class AppModule {}
