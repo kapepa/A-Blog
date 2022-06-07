@@ -2,10 +2,11 @@ import { Module } from '@nestjs/common';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from "@nestjs/typeorm";
-import * as dotenv from 'dotenv';
+import { config } from 'dotenv';
 import { User } from "./user/user.entity";
+import {JwtModule} from "@nestjs/jwt";
 
-dotenv.config();
+config();
 
 @Module({
   imports: [
@@ -23,6 +24,8 @@ dotenv.config();
     UserModule
   ],
   controllers: [],
-  providers: [],
+  providers: [
+
+  ],
 })
 export class AppModule {}
