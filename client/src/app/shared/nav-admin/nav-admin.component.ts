@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import {AuthService} from "../service/auth.service";
 
 @Component({
   selector: 'app-nav-admin',
@@ -10,6 +11,7 @@ export class NavAdminComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -17,6 +19,7 @@ export class NavAdminComponent implements OnInit {
 
   logout(e: Event) {
     e.preventDefault();
+    this.authService.logout();
     this.router.navigate(['/admin','login'],)
   }
 }

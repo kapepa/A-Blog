@@ -1,10 +1,10 @@
-import {forwardRef, Inject, Injectable} from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { UserService } from "../user/user.service";
 import { CreateDto } from "../dto/create.dto";
 import * as bcrypt from "bcrypt";
 import { config } from "dotenv";
 import { UserDto } from "../dto/user.dto";
-import {JwtService} from "@nestjs/jwt";
+import { JwtService } from "@nestjs/jwt";
 
 config();
 

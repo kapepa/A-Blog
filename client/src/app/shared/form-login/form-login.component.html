@@ -3,7 +3,13 @@
     <h4 class="form-login__h form-login__h--average">{{'login administrator' | firstUp}}</h4>
     <div *ngFor="let input of inputs" class="input__cell flex flex-direction-column">
       <label [for]="input.name"  class="input__label">{{input.label}}:</label>
-      <input class="input" [id]="input.name" [type]="input.type" [name]="input.name" [formControlName]="input.name">
+      <input
+        class="input"
+        [id]="input.name"
+        [type]="input.type"
+        [name]="input.name"
+        [formControlName]="input.name"
+      >
       <div class="input__error">
         <ng-container *ngIf="input.data && input.data.touched">
           <ng-container *ngIf="input.data?.errors?.['email'] ">{{ 'incoming email is wrong' | firstUp }}</ng-container>
@@ -13,7 +19,7 @@
       </div>
     </div>
     <div class="form-login__action flex">
-      <app-button type="submit" text="login" [link]="false" size="large" [disabled]="!validForm"></app-button>
+      <app-button type="submit" text="login" [link]="false" size="large" [disabled]="!validForm || flagSubmit"></app-button>
       <app-button type="reset" text="reset" [link]="false" size="large" [cb]="restForm" ></app-button>
     </div>
   </form>

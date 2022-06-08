@@ -14,8 +14,9 @@ import { CreateModule } from "./create/create.module";
 import { PagePostModule } from "./page-post/page-post.module";
 import { PipeModule } from "./pipe/pipe.module";
 import { NavAdminModule } from "./shared/nav-admin/nav-admin.module";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { CookieService } from 'ngx-cookie-service';
+import { AuthInterceptor } from "./interceptor/auth-interceptor";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,14 @@ import { CookieService } from 'ngx-cookie-service';
     NavAdminModule,
     HttpClientModule,
   ],
-  providers: [CookieService],
+  providers: [
+    CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
