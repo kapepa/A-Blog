@@ -37,13 +37,14 @@ export class FormLoginComponent implements OnInit {
   onSubmit(e: Event) {
     e.preventDefault();
     this.flagSubmit = !this.flagSubmit;
-    const values = this.loginForm.value;
-    this.authService.login(values).subscribe((token: {access_token: string}) => {
+    this.authService.login(this.loginForm.value).subscribe((token: {access_token: string}) => {
       this.authService.setAuthorizationToken(token.access_token);
       this.restForm();
       this.router.navigate(['/']);
       this.flagSubmit = !this.flagSubmit;
-    });
+    },() => {
+      this.flagSubmit = !this.flagSubmit;
+    })
   }
 
   restForm(){
@@ -54,5 +55,6 @@ export class FormLoginComponent implements OnInit {
   get email () { return this.loginForm.get('email')}
   get password () { return this.loginForm.get('password')}
   get validForm () { return this.loginForm.valid }
+  get authError () { return this.authService.error }
 
 }

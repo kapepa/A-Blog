@@ -1,4 +1,4 @@
-import { forwardRef, Inject, Injectable } from '@nestjs/common';
+import {forwardRef, Inject, Injectable, NotFoundException} from '@nestjs/common';
 import { UserService } from "../user/user.service";
 import { CreateDto } from "../dto/create.dto";
 import * as bcrypt from "bcrypt";
@@ -30,10 +30,12 @@ export class AuthService {
 
   async validateUser(email: string, password: string): Promise<any> {
     const user = await this.userService.findOne('email', email, { select: ['id','name','email','password'] } );
-    const compare = await this.compareBcrypt(password, user.password);
-    if (user && compare) {
-      const { password, ...other } = user;
-      return other;
+    if(!!user){
+      const compare = await this.compareBcrypt(password, user.password);
+      if (user && compare) {
+        const { password, ...other } = user;
+        return other;
+      }
     }
     return null;
   }
