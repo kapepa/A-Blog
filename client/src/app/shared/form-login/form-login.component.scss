@@ -18,4 +18,10 @@
     gap: toRem(6);
     padding-top: toRem(15);
   }
+  &__error{
+    font-size: toRem(16);
+    text-align: center;
+    background-color: red;
+    margin-bottom: toRem(7);
+  }
 }

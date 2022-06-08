@@ -1,4 +1,4 @@
-import {Body, Controller, Post, Req, UseGuards} from '@nestjs/common';
+import {BadRequestException, Body, Controller, Post, Req, UnauthorizedException, UseGuards} from '@nestjs/common';
 import {AuthService} from "./auth.service";
 import {ApiResponse, ApiTags} from "@nestjs/swagger";
 import {CreateDto} from "../dto/create.dto";
@@ -13,16 +13,24 @@ export class AuthController {
 
   @Post('/create')
   @ApiResponse({ status: 201, description: 'The record has been successfully created.', type: CreateDto})
-  @ApiResponse({ status: 403, description: 'Forbidden.'})
+  @ApiResponse({ status: 400, description: 'BadRequestException'})
   async createUser(@Body() body): Promise<any>{
-    return this.authService.createUser(body);
+    try{
+      return this.authService.createUser(body);
+    } catch ( e ) {
+      return new BadRequestException();
+    }
   }
 
   @UseGuards(AuthGuard('local'))
   @Post('/login')
   @ApiResponse({ status: 201, description: 'Login successfully user, return Jwt token',})
-  @ApiResponse({ status: 403, description: 'Forbidden.'})
+  @ApiResponse({ status: 401, description: 'UnauthorizedException'})
   async login(@Req() req, @Body() body) {
-    return await this.authService.login(req.user);
+    try {
+      return await this.authService.login(req.user);
+    } catch (e) {
+      return new UnauthorizedException();
+    }
   }
 }

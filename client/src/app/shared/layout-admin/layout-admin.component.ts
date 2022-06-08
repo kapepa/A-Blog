@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../service/auth.service";
 
 @Component({
   selector: 'app-layout-admin',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutAdminComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
   }
+
+  get isLogin() { return this.authService.isLogin }
 
 }

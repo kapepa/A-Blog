@@ -1,4 +1,4 @@
-import {Controller, Get, Req, UseGuards} from '@nestjs/common';
+import {Controller, Get, NotFoundException, Req, UseGuards} from '@nestjs/common';
 import {ApiResponse, ApiTags} from "@nestjs/swagger";
 import {JwtAuthGuard} from "../auth/guard/jwt-auth.guard";
 import {CreateDto} from "../dto/create.dto";
@@ -14,8 +14,12 @@ export class UserController {
   @UseGuards(JwtAuthGuard)
   @Get('/profile')
   @ApiResponse({ status: 200, description: 'Get user profile.', type: CreateDto})
-  @ApiResponse({ status: 403, description: 'Forbidden.'})
+  @ApiResponse({ status: 404, description: 'Forbidden.'})
   getProfile(@Req() req) {
-    return req.user;
+    try {
+      return req.user;
+    } catch ( e ) {
+      return new NotFoundException()
+    }
   }
 }

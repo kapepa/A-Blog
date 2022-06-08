@@ -1,6 +1,7 @@
 <div class="flex justify-content-center">
   <form class="form-login" (ngSubmit)="onSubmit($event)" [formGroup]="loginForm">
     <h4 class="form-login__h form-login__h--average">{{'login administrator' | firstUp}}</h4>
+    <div class="form-login__error" *ngIf="authError | async as error">{{error}}</div>
     <div *ngFor="let input of inputs" class="input__cell flex flex-direction-column">
       <label [for]="input.name"  class="input__label">{{input.label}}:</label>
       <input

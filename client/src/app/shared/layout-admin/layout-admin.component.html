@@ -5,7 +5,7 @@
         <a routerLink="/admin">
           <h1 class="layout_admin__h layout_admin__h--logo">Admin panel</h1>
         </a>
-        <app-nav-admin></app-nav-admin>
+        <app-nav-admin *ngIf="isLogin"></app-nav-admin>
       </div>
     </div>
   </header>
