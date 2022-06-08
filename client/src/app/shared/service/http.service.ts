@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {catchError, Observable, throwError} from "rxjs";
+import {catchError, throwError} from "rxjs";
+import {IUser} from "../../dto";
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,12 @@ export class HttpService {
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
-  login(data: { email: string, password: string; }): Observable<{ access_token: string }> {
-    return this.http.post<{ access_token: string }>(`${this.url}/api/auth/login`,data).pipe(catchError(this.handleError))
+  login(data: { email: string, password: string; }) {
+    return this.http.post<{ access_token: string }>(`${this.url}/api/auth/login`,data).pipe(catchError(this.handleError));
+  }
+
+  getUser() {
+    return this.http.get<any>(`${this.url}/api/user/profile`).pipe(catchError(this.handleError));
   }
 
 }

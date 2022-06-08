@@ -3,7 +3,6 @@ import { IInput } from "../../dto";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import {AuthService} from "../service/auth.service";
-import {} from "../service/http.service";
 
 @Component({
   selector: 'app-form-login',
@@ -11,17 +10,19 @@ import {} from "../service/http.service";
   styleUrls: ['./form-login.component.scss','../input/input.component.scss']
 })
 export class FormLoginComponent implements OnInit {
+  flagSubmit: boolean = false;
   loginForm: FormGroup = new FormGroup({
-    email: new FormControl('',[
+    email: new FormControl('myemail@email.com',[
       Validators.required,
       Validators.email,
     ]),
-    password: new FormControl('',[
+    password: new FormControl('thismypassowrd',[
       Validators.minLength(6),
     ]),
   });
+
   inputs: IInput [] = [
-    { type: 'text', name: 'email', label: 'Email', data: this.email },
+    { type: 'text', name: 'email', label: 'Email', data: this.email, },
     { type: 'password', name: 'password', label: 'Password', data: this.password },
   ]
 
@@ -35,11 +36,14 @@ export class FormLoginComponent implements OnInit {
 
   onSubmit(e: Event) {
     e.preventDefault();
+    this.flagSubmit = !this.flagSubmit;
     const values = this.loginForm.value;
-    this.authService.login(values);
-
-    // this.router.navigate(['/'])
-    // this.restForm();
+    this.authService.login(values).subscribe((token: {access_token: string}) => {
+      this.authService.setAuthorizationToken(token.access_token);
+      this.restForm();
+      this.router.navigate(['/']);
+      this.flagSubmit = !this.flagSubmit;
+    });
   }
 
   restForm(){
