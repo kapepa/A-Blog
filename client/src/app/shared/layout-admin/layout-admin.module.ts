@@ -7,12 +7,13 @@ import { DashboardComponent } from "../../dashboard/dashboard.component";
 import { CreateComponent } from "../../create/create.component";
 import { EditComponent } from "../../edit/edit.component";
 import { NavAdminModule } from "../nav-admin/nav-admin.module";
+import { AccessAdminGuard } from "../../guard/access-admin.guard";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'create', component: CreateComponent },
-  { path: ':id/edit', component: EditComponent},
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AccessAdminGuard] },
+  { path: 'create', component: CreateComponent, canActivate: [AccessAdminGuard] },
+  { path: ':id/edit', component: EditComponent, canActivate: [AccessAdminGuard] },
 ]
 
 @NgModule({
@@ -24,6 +25,7 @@ const routes: Routes = [
     CommonModule,
     NavAdminModule,
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AccessAdminGuard]
 })
 export class LayoutAdminModule { }
