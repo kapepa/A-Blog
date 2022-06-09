@@ -1,0 +1,33 @@
+@import "../../../mixins";
+.form_dynamic{
+  border: 1px solid gray;
+  padding: toRem(12);
+  width: 100%;
+  &__h{
+    font-weight: bold;
+    &--agerage{
+      font-size: toRem(25);
+    }
+  }
+  &__cell{
+    padding: toRem(7) 0;
+  }
+  &__label{
+    font-size: toRem(15);
+    padding-bottom: toRem(5);
+  }
+  &__input{
+    padding: toRem(5) toRem(8);
+    outline: none;
+    border: 1px solid #000;
+    font-size: toRem(18);
+  }
+  &__error{
+    min-height: toRem(20);
+    font-size: toRem(16);
+    color: green;
+  }
+  &__actions{
+
+  }
+}

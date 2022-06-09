@@ -15,5 +15,11 @@ export interface IUser{
 
 export interface IFormData{
   title: string,
-  input: { name: string, type: string, value: string }[],
+  input: {
+    name: string,
+    type: string,
+    value: string,
+    label: string,
+    validate?: [ 'required'?, 'minLength'? ]
+  }[],
 }
