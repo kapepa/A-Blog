@@ -12,3 +12,8 @@ export interface IUser{
   password?: string;
   isActive?: boolean;
 }
+
+export interface IFormData{
+  title: string,
+  input: { name: string, type: string, value: string }[],
+}

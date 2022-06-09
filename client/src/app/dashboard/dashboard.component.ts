@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IFormData } from "../dto";
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  formData: IFormData = {
+    title: 'Create new post',
+    input: [
+      { name: 'title', type: 'text', value: '' },
+    ]
+  }
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+
 
 }

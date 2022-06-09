@@ -40,7 +40,7 @@ export class FormLoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe((token: {access_token: string}) => {
       this.authService.setAuthorizationToken(token.access_token);
       this.restForm();
-      this.router.navigate(['/']);
+      this.router.navigate(['/admin','dashboard']);
       this.flagSubmit = !this.flagSubmit;
     },() => {
       this.flagSubmit = !this.flagSubmit;
