@@ -17,6 +17,7 @@ import { NavAdminModule } from "./shared/nav-admin/nav-admin.module";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { CookieService } from 'ngx-cookie-service';
 import { AuthInterceptor } from "./interceptor/auth-interceptor";
+import {FormDynamicModule} from "./shared/form-dynamic/form-dynamic.module";
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AuthInterceptor } from "./interceptor/auth-interceptor";
     PipeModule,
     NavAdminModule,
     HttpClientModule,
+    FormDynamicModule,
   ],
   providers: [
     CookieService,
