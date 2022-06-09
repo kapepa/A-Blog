@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IFormData} from "../../dto";
-import { FormGroup, FormControl } from "@angular/forms";
+import {FormGroup, FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-form-dynamic',
@@ -10,19 +10,26 @@ import { FormGroup, FormControl } from "@angular/forms";
 export class FormDynamicComponent implements OnInit {
   @Input() formData!: IFormData;
   form!: FormGroup;
+  validate = {
+    required: Validators.required,
+    minLength: Validators.minLength(4),
+  }
 
   constructor() { }
 
   ngOnInit(): void {
     const prepareValue = this.formData.input.reduce(( accum, input ) => {
-      accum[input.name] = new FormControl('')
+      const validators = input.validate?.map((key) => { if(!!key) return this.validate[key] as any } )
+      accum[input.name] = new FormControl('', validators);
       return accum;
     },{} as any);
-
-    this.form = new FormGroup(prepareValue)
+    this.form = new FormGroup(prepareValue);
+    console.log(this.form)
   }
 
   onSubmit() {
-    console.log(this.form.value)
+
   }
+
+
 }

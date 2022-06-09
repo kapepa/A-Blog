@@ -1,7 +1,18 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <h3>{{formData.title}}</h3>
+<form class="form_dynamic flex flex-direction-column" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h3 class="form_dynamic__h form_dynamic__h--agerage">{{formData.title}}</h3>
 
-  <input *ngFor="let input of formData.input" [type]="input.type" [name]="input.name" [formControlName]="input.name">
+  <div class="form_dynamic__cell flex flex-direction-column" *ngFor="let input of formData.input">
+    <label class="form_dynamic__label" [for]="input.name" >{{input.label}}:</label>
+    <input class="form_dynamic__input" [id]="input.name" [type]="input.type" [name]="input.name" [formControlName]="input.name">
+    <div class="form_dynamic__error">
+      <ng-container *ngIf="form.controls[input.name].invalid && form.controls[input.name].touched">
+        <ng-container *ngIf="form?.controls?.[input.name]?.errors?.['required']">Required</ng-container>
+        <ng-container *ngIf="form.controls?.[input.name]?.errors?.['minlength']">Minlength</ng-container>
+      </ng-container>
+    </div>
+  </div>
 
-  <app-button type="submit" text="Add" [link]="false" size="large"></app-button>
+  <div class="form_dynamic__actions">
+    <app-button type="submit" text="Add" [link]="false" size="large"></app-button>
+  </div>
 </form>

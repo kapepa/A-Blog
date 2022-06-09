@@ -11,7 +11,13 @@ export class DashboardComponent implements OnInit {
   formData: IFormData = {
     title: 'Create new post',
     input: [
-      { name: 'title', type: 'text', value: '' },
+      {
+        name: 'title',
+        type: 'text',
+        value: '',
+        label: 'Name post',
+        validate: ['required', "minLength"],
+      },
     ]
   }
 
