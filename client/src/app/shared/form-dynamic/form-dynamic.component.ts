@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IFormData} from "../../dto";
-import {FormGroup, FormControl, Validators} from "@angular/forms";
+import {FormGroup, FormControl, Validators, FormBuilder} from "@angular/forms";
+import {AngularEditorConfig} from "@kolkov/angular-editor";
 
 @Component({
   selector: 'app-form-dynamic',
@@ -14,21 +15,62 @@ export class FormDynamicComponent implements OnInit {
     required: Validators.required,
     minLength: Validators.minLength(4),
   }
+  editorConfig: AngularEditorConfig = {
+    outline: false,
+    enableToolbar: false,
+    editable: true,
+    spellcheck: true,
+    minHeight: '15rem',
+    maxHeight: '15rem',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    sanitize: true,
+    toolbarPosition: 'top',
+    defaultFontName: 'Comic Sans MS',
+    defaultFontSize: '4',
+    defaultParagraphSeparator: 'p',
+    customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+    toolbarHiddenButtons: [[],[
+      'insertVideo',
+      'fontSize',
+      'textColor',
+      'backgroundColor',
+    ]]
+  }
 
-  constructor() { }
+  htmlContent = ''
+
+  constructor(
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit(): void {
     const prepareValue = this.formData.input.reduce(( accum, input ) => {
       const validators = input.validate?.map((key) => { if(!!key) return this.validate[key] as any } )
       accum[input.name] = new FormControl('', validators);
       return accum;
-    },{} as any);
-    this.form = new FormGroup(prepareValue);
-    console.log(this.form)
+    }, {} as any);
+
+    this.form = this.formBuilder.group(prepareValue);
   }
 
-  onSubmit() {
 
+  onSubmit() {
+    console.log(this.form)
   }
 
 

@@ -1,18 +1,29 @@
 <form class="form_dynamic flex flex-direction-column" [formGroup]="form" (ngSubmit)="onSubmit()">
   <h3 class="form_dynamic__h form_dynamic__h--agerage">{{formData.title}}</h3>
 
-  <div class="form_dynamic__cell flex flex-direction-column" *ngFor="let input of formData.input">
-    <label class="form_dynamic__label" [for]="input.name" >{{input.label}}:</label>
-    <input class="form_dynamic__input" [id]="input.name" [type]="input.type" [name]="input.name" [formControlName]="input.name">
-    <div class="form_dynamic__error">
-      <ng-container *ngIf="form.controls[input.name].invalid && form.controls[input.name].touched">
-        <ng-container *ngIf="form?.controls?.[input.name]?.errors?.['required']">Required</ng-container>
-        <ng-container *ngIf="form.controls?.[input.name]?.errors?.['minlength']">Minlength</ng-container>
+  <ng-container *ngFor="let input of formData.input">
+    <div [ngClass]="{'': input.type === 'editor', 'form_dynamic__cell': input.type !== 'editor'}" class="flex flex-direction-column" >
+      <ng-container *ngIf="input.type !== 'editor'">
+        <label class="form_dynamic__label" [for]="input.name" >{{input.label}}:</label>
+        <input class="form_dynamic__input" [id]="input.name" [type]="input.type" [name]="input.name" [formControlName]="input.name">
       </ng-container>
+      <ng-container *ngIf="input.type === 'editor'">
+        <angular-editor class="form_dynamic__editor" id="editor" [formControlName]="input.name" [config]="editorConfig" [(ngModel)]="htmlContent"></angular-editor>
+      </ng-container>
+      <div class="form_dynamic__error">
+        <ng-container *ngIf="form.controls[input.name].invalid && form.controls[input.name].touched">
+          <ng-container *ngIf="form?.controls?.[input.name]?.errors?.['required']">Required</ng-container>
+          <ng-container *ngIf="form.controls?.[input.name]?.errors?.['minlength']">Minlength</ng-container>
+        </ng-container>
+      </div>
     </div>
+  </ng-container>
+
+  <div class="form_dynamic__actions flex">
+    <app-button  type="submit" text="Add" [link]="false" size="large"></app-button>
+    <app-button  type="reset" text="Reset" [link]="false" size="large"></app-button>
   </div>
 
-  <div class="form_dynamic__actions">
-    <app-button type="submit" text="Add" [link]="false" size="large"></app-button>
-  </div>
 </form>
+
+

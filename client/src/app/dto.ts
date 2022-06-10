@@ -17,7 +17,7 @@ export interface IFormData{
   title: string,
   input: {
     name: string,
-    type: string,
+    type: keyof '' | 'text' | 'password' | 'editor',
     value: string,
     label: string,
     validate?: [ 'required'?, 'minLength'? ]
