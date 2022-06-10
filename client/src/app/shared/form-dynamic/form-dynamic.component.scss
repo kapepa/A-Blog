@@ -27,7 +27,13 @@
     font-size: toRem(16);
     color: green;
   }
+  &__editor{
+    height: auto;
+    width: auto;
+    background-color: white;
+  }
   &__actions{
-
+    padding-top: toRem(20);
+    gap: toRem(10);
   }
 }

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormDynamicComponent } from './form-dynamic.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ButtonModule } from "../button/button.module";
-
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 
 @NgModule({
@@ -15,6 +15,7 @@ import { ButtonModule } from "../button/button.module";
     FormsModule,
     ReactiveFormsModule,
     ButtonModule,
+    AngularEditorModule
   ],
   exports: [
     FormDynamicComponent

@@ -18,7 +18,14 @@ export class DashboardComponent implements OnInit {
         label: 'Name post',
         validate: ['required', "minLength"],
       },
-    ]
+      {
+        name: 'editor',
+        type: 'editor',
+        value: '',
+        label: 'editor',
+        validate: ['required'],
+      },
+    ],
   }
 
   constructor() { }
