@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpService } from "./http.service";
 import { CookieService } from "ngx-cookie-service";
 import {catchError, Observable, Subject, tap, throwError} from "rxjs";
-import {IUser} from "../../dto";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Injectable({
