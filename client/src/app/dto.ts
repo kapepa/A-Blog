@@ -6,11 +6,20 @@ export interface IInput {
 }
 
 export interface IUser{
-  id: string;
+  id?: string;
+  post?: IPost[];
   name: string;
   email: string;
   password?: string;
   isActive?: boolean;
+}
+
+export interface IPost{
+  id?: string;
+  user?: IUser;
+  title: string;
+  content: string;
+  created_at: Date;
 }
 
 export interface IFormData{

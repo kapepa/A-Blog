@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {IFormData} from "../../dto";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {IFormData, IPost} from "../../dto";
 import {FormGroup, FormControl, Validators, FormBuilder} from "@angular/forms";
 import {AngularEditorConfig} from "@kolkov/angular-editor";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-form-dynamic',
@@ -10,6 +11,8 @@ import {AngularEditorConfig} from "@kolkov/angular-editor";
 })
 export class FormDynamicComponent implements OnInit {
   @Input() formData!: IFormData;
+  @Output() submitForm: EventEmitter<any> = new EventEmitter<any>();
+
   form!: FormGroup;
   validate = {
     required: Validators.required,
@@ -69,8 +72,13 @@ export class FormDynamicComponent implements OnInit {
   }
 
 
-  onSubmit() {
-    console.log(this.form)
+  onSubmit(e: Event) {
+    e.preventDefault();
+    const form = new FormData();
+    const values = this.form.value;
+    Object.keys(values).forEach( key => form.append(key, values[key]));
+
+    this.submitForm.emit(form);
   }
 
 

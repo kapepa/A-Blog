@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IFormData } from "../dto";
+import {IFormData, IPost} from "../dto";
+import {PostService} from "../shared/service/post.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -28,11 +29,18 @@ export class DashboardComponent implements OnInit {
     ],
   }
 
-  constructor() { }
+  constructor(
+    private postService: PostService,
+  ) { }
 
   ngOnInit(): void {
   }
 
+  submitForm(data: FormData) {
+    this.postService.createPost(data).subscribe((data) => {
+      console.log(data)
+    })
+  }
 
 
 }

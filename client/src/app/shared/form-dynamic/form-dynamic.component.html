@@ -1,4 +1,4 @@
-<form class="form_dynamic flex flex-direction-column" [formGroup]="form" (ngSubmit)="onSubmit()">
+<form class="form_dynamic flex flex-direction-column" [formGroup]="form" (ngSubmit)="onSubmit($event)">
   <h3 class="form_dynamic__h form_dynamic__h--agerage">{{formData.title}}</h3>
 
   <ng-container *ngFor="let input of formData.input">
