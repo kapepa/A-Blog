@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {IFormData, IPost} from "../dto";
 import {PostService} from "../shared/service/post.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -20,10 +21,10 @@ export class DashboardComponent implements OnInit {
         validate: ['required', "minLength"],
       },
       {
-        name: 'editor',
-        type: 'editor',
+        name: 'content',
+        type: 'content',
         value: '',
-        label: 'editor',
+        label: 'content',
         validate: ['required'],
       },
     ],
@@ -31,6 +32,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private postService: PostService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +41,7 @@ export class DashboardComponent implements OnInit {
   submitForm(data: FormData) {
     this.postService.createPost(data).subscribe((data) => {
       console.log(data)
+      // this.router.navigate(['/admin'])
     })
   }
 

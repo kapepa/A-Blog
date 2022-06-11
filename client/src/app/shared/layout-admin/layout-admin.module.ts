@@ -11,7 +11,7 @@ import { AccessAdminGuard } from "../../guard/access-admin.guard";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
-  { path: 'dashboard', component: DashboardComponent, },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AccessAdminGuard] },
   { path: 'create', component: CreateComponent, canActivate: [AccessAdminGuard] },
   { path: ':id/edit', component: EditComponent, canActivate: [AccessAdminGuard] },
 ]

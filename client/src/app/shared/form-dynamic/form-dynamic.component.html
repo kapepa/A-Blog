@@ -2,13 +2,13 @@
   <h3 class="form_dynamic__h form_dynamic__h--agerage">{{formData.title}}</h3>
 
   <ng-container *ngFor="let input of formData.input">
-    <div [ngClass]="{'': input.type === 'editor', 'form_dynamic__cell': input.type !== 'editor'}" class="flex flex-direction-column" >
-      <ng-container *ngIf="input.type !== 'editor'">
+    <div [ngClass]="{'': input.name === 'content', 'form_dynamic__cell': input.name !== 'content'}" class="flex flex-direction-column" >
+      <ng-container *ngIf="input.name !== 'content'">
         <label class="form_dynamic__label" [for]="input.name" >{{input.label}}:</label>
         <input class="form_dynamic__input" [id]="input.name" [type]="input.type" [name]="input.name" [formControlName]="input.name">
       </ng-container>
-      <ng-container *ngIf="input.type === 'editor'">
-        <angular-editor class="form_dynamic__editor" id="editor" [formControlName]="input.name" [config]="editorConfig" [(ngModel)]="htmlContent"></angular-editor>
+      <ng-container *ngIf="input.name === 'content'">
+        <angular-editor class="form_dynamic__editor" [id]="input.name" [formControlName]="input.name" [config]="editorConfig" [(ngModel)]="htmlContent"></angular-editor>
       </ng-container>
       <div class="form_dynamic__error">
         <ng-container *ngIf="form.controls[input.name].invalid && form.controls[input.name].touched">
@@ -23,7 +23,6 @@
     <app-button  type="submit" text="Add" [link]="false" size="large"></app-button>
     <app-button  type="reset" text="Reset" [link]="false" size="large"></app-button>
   </div>
-
 </form>
 
 
