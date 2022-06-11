@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {catchError, throwError} from "rxjs";
-import {IUser} from "../../dto";
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from "@angular/common/http";
+import {catchError, Observable, tap, throwError} from "rxjs";
+import {IPost, IUser} from "../../dto";
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +9,28 @@ import {IUser} from "../../dto";
 export class HttpService {
   url = 'http://localhost:5000';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+  ) { }
+
+  formOptions() {
+    return {
+      headers: new HttpHeaders({
+        'content-type': 'multipart/form-data'
+      })
+    };
+  }
 
   login(data: { email: string, password: string; }) {
     return this.http.post<{ access_token: string }>(`${this.url}/api/auth/login`,data)
   }
 
   getUser() {
-    return this.http.get<any>(`${this.url}/api/user/profile`)
+    return this.http.get<IUser>(`${this.url}/api/user/profile`)
+  };
+
+  createPost(data: FormData): Observable<HttpResponse<any>> {
+    return this.http.post<any>(`${this.url}/api/post/create`, data)
   }
 
 }
