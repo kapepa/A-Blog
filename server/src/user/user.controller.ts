@@ -15,9 +15,9 @@ export class UserController {
   @Get('/profile')
   @ApiResponse({ status: 200, description: 'Get user profile.', type: CreateDto})
   @ApiResponse({ status: 404, description: 'Forbidden.'})
-  getProfile(@Req() req) {
+  async getProfile(@Req() req) {
     try {
-      return req.user;
+      return await this.userService.findOne('id', req.user.id);
     } catch ( e ) {
       return new NotFoundException()
     }

@@ -13,14 +13,6 @@ export class HttpService {
     private http: HttpClient,
   ) { }
 
-  formOptions() {
-    return {
-      headers: new HttpHeaders({
-        'content-type': 'multipart/form-data'
-      })
-    };
-  }
-
   login(data: { email: string, password: string; }) {
     return this.http.post<{ access_token: string }>(`${this.url}/api/auth/login`,data)
   }

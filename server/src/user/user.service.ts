@@ -20,7 +20,7 @@ export class UserService {
     return this.usersRepository.save(this.usersRepository.create({...profile, password}));
   }
 
-  async findOne(key: string, val: string, options : { relations?: string[], select?: string[] }): Promise<UserDto> {
+  async findOne(key: string, val: string, options? : { relations?: string[], select?: string[] }): Promise<UserDto> {
     return this.usersRepository.findOne({ where:{[key]: val}, ...options as any });
   }
 };
