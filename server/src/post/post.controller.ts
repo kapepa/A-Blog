@@ -1,7 +1,7 @@
 import {
   Body,
-  Controller,
-  Post,
+  Controller, Get, NotFoundException,
+  Post, Query,
   Req,
   UnauthorizedException,
   UseGuards,
@@ -12,6 +12,7 @@ import {PostService} from "./post.service";
 import {FileInterceptor} from "@nestjs/platform-express";
 import {JwtAuthGuard} from "../auth/guard/jwt-auth.guard";
 import {PostDto} from "../dto/post.dto";
+import {ExistAuthGuard} from "../auth/guard/exist-auth.guard";
 
 @ApiTags('post')
 @Controller('/api/post')
@@ -30,6 +31,18 @@ export class PostController {
       return await this.postService.createUserPost(JSON.parse(JSON.stringify(body)), req.user.id)
     } catch (e) {
       return new UnauthorizedException();
+    }
+  }
+
+  // @UseGuards(JwtAuthGuard)
+  @Get('/admin/all')
+  @ApiResponse({ status: 200, description: 'Receive all post for admin', type: PostDto })
+  @ApiResponse({ status: 400, description: 'NotFoundException'})
+  async receiveAdminAllPost(@Query() query, @Req() req): Promise<any> {
+    try {
+      return await this.postService.receiveAllPost(query);
+    } catch (e){
+      return new NotFoundException();
     }
   }
 }

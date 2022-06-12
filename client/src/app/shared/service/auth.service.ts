@@ -43,7 +43,10 @@ export class AuthService {
   }
 
   login(data: { email: string, password: string; }): Observable<{ access_token: string }> {
-    return this.httpService.login(data).pipe().pipe(tap(console.log),catchError(this.handleError.bind(this)));
+    return this.httpService.login(data).pipe().pipe(
+      // tap(console.log),
+      catchError(this.handleError.bind(this))
+    );
   }
 
   logout() {

@@ -7,7 +7,6 @@ import { User } from "./user/user.entity";
 import { Post } from "./post/post.entity";
 import { PostModule } from './post/post.module';
 
-
 config();
 
 @Module({
