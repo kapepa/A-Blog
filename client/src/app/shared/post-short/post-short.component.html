@@ -1,1 +1,21 @@
-<p>post-short works!</p>
+<section>
+  <header>
+    <small>№</small>
+    <small>{{'author' | firstUp}}</small>
+    <small>{{'title' | firstUp}}</small>
+    <small>{{'date' | firstUp}}</small>
+    <small>{{'actions' | firstUp}}</small>
+  </header>
+  <div>
+    <div *ngFor="let post of posts; index as i">
+      <small>{{i + 1}}</small>
+      <small>{{post.user?.name}}</small>
+      <small>{{post.title}}</small>
+      <small>{{post.created_at | date}}</small>
+      <small>
+        <app-button text="Open" [link]="true" size="average" [href]="'/admin/'+post.id+'/edit'"></app-button>
+        <app-button text="Delete" [link]="false" size="average" [cb]="deletePost"></app-button>
+      </small>
+    </div>
+  </div>
+</section>

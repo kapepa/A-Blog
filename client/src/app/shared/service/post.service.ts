@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from "./http.service";
 import {IPost} from "../../dto";
+import {Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  posts!: IPost[];
+  posts: Subject<IPost[]> = new Subject<IPost[]>();
 
   constructor(
     private httpService: HttpService,
@@ -16,10 +17,9 @@ export class PostService {
     return this.httpService.createPost(data);
   }
 
-  receiveAdminAllPost(skip: number) {
+  receiveAdminAllPost() {
     return this.httpService.receiveAdminAllPost().subscribe(posts => {
-      console.log(posts)
-      this.posts = posts;
+      this.posts.next(posts);
     })
   }
 }
