@@ -18,6 +18,7 @@ export class PostService {
 
   receiveAdminAllPost(skip: number) {
     return this.httpService.receiveAdminAllPost().subscribe(posts => {
+      console.log(posts)
       this.posts = posts;
     })
   }

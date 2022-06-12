@@ -20,6 +20,4 @@ export class DashboardComponent implements OnInit {
 
   get posts() { return this.postService.posts };
 
-
-
 }
