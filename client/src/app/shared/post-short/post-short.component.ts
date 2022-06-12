@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IPost} from "../../dto";
 import {PostService} from "../service/post.service";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-post-short',
@@ -8,15 +9,19 @@ import {PostService} from "../service/post.service";
   styleUrls: ['./post-short.component.scss']
 })
 export class PostShortComponent implements OnInit {
-  // @Input() posts!: IPost[]
+  posts: IPost[] = [] as IPost[];
 
   constructor(
     private postService: PostService
   ) { }
 
   ngOnInit(): void {
-    console.log(this.posts)
+    this.postService.posts.subscribe((posts) => {
+      this.posts = posts;
+    })
   }
 
-  get posts(){ return this.postService.posts }
+  deletePost() {
+    console.log('delete')
+  }
 }

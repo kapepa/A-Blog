@@ -9,15 +9,14 @@ import {Router} from "@angular/router";
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  posts: IPost[] = [] as IPost[];
 
   constructor(
     private postService: PostService
   ) {}
 
   ngOnInit(): void {
-    this.postService.receiveAdminAllPost(0)
+    this.postService.receiveAdminAllPost()
   }
-
-  get posts() { return this.postService.posts };
 
 }
