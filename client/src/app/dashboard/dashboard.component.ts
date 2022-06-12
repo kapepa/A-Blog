@@ -10,40 +10,16 @@ import {Router} from "@angular/router";
 })
 export class DashboardComponent implements OnInit {
 
-  formData: IFormData = {
-    title: 'Create new post',
-    input: [
-      {
-        name: 'title',
-        type: 'text',
-        value: '',
-        label: 'Name post',
-        validate: ['required', "minLength"],
-      },
-      {
-        name: 'content',
-        type: 'content',
-        value: '',
-        label: 'content',
-        validate: ['required'],
-      },
-    ],
-  }
-
   constructor(
-    private postService: PostService,
-    private router: Router,
-  ) { }
+    private postService: PostService
+  ) {}
 
   ngOnInit(): void {
+    this.postService.receiveAdminAllPost(0)
   }
 
-  submitForm(data: FormData) {
-    this.postService.createPost(data).subscribe((data) => {
-      console.log(data)
-      // this.router.navigate(['/admin'])
-    })
-  }
+  get posts() { return this.postService.posts };
+
 
 
 }

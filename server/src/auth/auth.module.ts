@@ -6,13 +6,16 @@ import { LocalStrategy } from "./strategies/local.strategy";
 import { PassportModule } from "@nestjs/passport";
 import { JwtModule } from "@nestjs/jwt";
 import { JwtStrategy } from "./strategies/jwt.strategy";
+import { config } from "dotenv";
+
+config();
 
 @Module({
   imports: [
     UserModule,
     PassportModule,
     JwtModule.register({
-      secret: 'MySecret',
+      secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1d' },
     }),
   ],
