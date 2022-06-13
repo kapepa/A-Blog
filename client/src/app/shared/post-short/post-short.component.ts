@@ -21,7 +21,7 @@ export class PostShortComponent implements OnInit {
     })
   }
 
-  deletePost() {
-    console.log('delete')
+  deletePost(prop: {id: any, index: number}) {
+    this.postService.deleteAdminAllPost(prop);
   }
 }

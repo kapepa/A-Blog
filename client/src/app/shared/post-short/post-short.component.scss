@@ -1,0 +1,32 @@
+@import "../../../mixins";
+.post_short{
+  &__section{
+    max-width: toRem(700);
+  }
+  &__header{
+    background-color: lighten(indianred, 20%);
+    padding: toRem(10);
+  }
+  &__cell-up{
+    text-align: center;
+    font-size: toRem(18);
+    font-weight: bold;
+  }
+  &__cell-def{
+    text-align: center;
+    font-size: toRem(16);
+    align-self: center;
+    &--action{
+      column-gap: toRem(10);
+    }
+  }
+  &__main{
+    padding: toRem(10);
+  }
+  &__greed{
+    display: grid;
+    grid-template-columns:  minmax(auto, toRem(50)) repeat(3, minmax(toRem(100), auto)) minmax(toRem(130), auto);
+    grid-auto-rows: auto;
+    row-gap: toRem(10);
+  }
+}

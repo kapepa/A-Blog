@@ -21,6 +21,6 @@ export class UserService {
   }
 
   async findOne(key: string, val: string, options? : { relations?: string[], select?: string[] }): Promise<UserDto> {
-    return this.usersRepository.findOne({ where:{[key]: val}, ...options as any });
+    return this.usersRepository.findOne({ where:{ [key]: val }, ...options as any });
   }
 };

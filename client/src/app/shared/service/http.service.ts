@@ -3,7 +3,7 @@ import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 import {IPost, IUser} from "../../dto";
 
-interface IQuerySelect {
+export interface IQuerySelect {
   where?: string,
   where_val?: string | number | boolean,
   order?: string,
@@ -47,5 +47,8 @@ export class HttpService {
     return this.http.get<IPost[]>(`${this.url}/api/post/admin/all${!!queryString ? '?'+queryString : ''}`)
   }
 
+  deleteAdminAllPost(id: string){
+    return this.http.delete(`${this.url}/api/post/admin?id=${id}`)
+  }
 }
 

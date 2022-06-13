@@ -1,21 +1,21 @@
-<section>
-  <header>
-    <small>№</small>
-    <small>{{'author' | firstUp}}</small>
-    <small>{{'title' | firstUp}}</small>
-    <small>{{'date' | firstUp}}</small>
-    <small>{{'actions' | firstUp}}</small>
+<section class="post_short__section">
+  <header class="post_short__header post_short__greed">
+    <small class="post_short__cell-up">№</small>
+    <small class="post_short__cell-up">{{'author' | firstUp}}</small>
+    <small class="post_short__cell-up">{{'title' | firstUp}}</small>
+    <small class="post_short__cell-up">{{'date' | firstUp}}</small>
+    <small class="post_short__cell-up">{{'actions' | firstUp}}</small>
   </header>
-  <div>
-    <div *ngFor="let post of posts; index as i">
-      <small>{{i + 1}}</small>
-      <small>{{post.user?.name}}</small>
-      <small>{{post.title}}</small>
-      <small>{{post.created_at | date}}</small>
-      <small>
+  <div class="post_short__main post_short__greed">
+    <ng-container  *ngFor="let post of posts; index as i">
+      <small class="post_short__cell-def">{{i + 1}}</small>
+      <small class="post_short__cell-def">{{post.user?.name}}</small>
+      <small class="post_short__cell-def">{{post.title}}</small>
+      <small class="post_short__cell-def">{{post.created_at | date}}</small>
+      <small class="post_short__cell-def flex post_short__cell-def--action justify-content-center">
         <app-button text="Open" [link]="true" size="average" [href]="'/admin/'+post.id+'/edit'"></app-button>
-        <app-button text="Delete" [link]="false" size="average" [cb]="deletePost"></app-button>
+        <app-button text="Delete" [link]="false" size="average" (click)="deletePost({ id: post.id, index: i})" ></app-button>
       </small>
-    </div>
+    </ng-container>
   </div>
 </section>
