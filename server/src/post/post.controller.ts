@@ -1,6 +1,6 @@
 import {
   Body,
-  Controller, Get, NotFoundException,
+  Controller, Delete, Get, NotFoundException,
   Post, Query,
   Req,
   UnauthorizedException,
@@ -34,13 +34,25 @@ export class PostController {
     }
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('/admin/all')
   @ApiResponse({ status: 200, description: 'Receive all post for admin', type: PostDto })
   @ApiResponse({ status: 400, description: 'NotFoundException'})
   async receiveAdminAllPost(@Query() query, @Req() req): Promise<any> {
     try {
       return await this.postService.receiveAllPost(query);
+    } catch (e){
+      return new NotFoundException();
+    }
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('/admin')
+  @ApiResponse({ status: 200, description: 'Delete one own post'})
+  @ApiResponse({ status: 404, description: 'NotFoundException'})
+  async deletePost (@Query() query, @Req() req): Promise<void | NotFoundException> {
+    try {
+      await this.postService.deletePost(query.id, req.user.id);
     } catch (e){
       return new NotFoundException();
     }

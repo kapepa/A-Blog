@@ -23,6 +23,7 @@ a{
 
 .container{
   max-width: 1300px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -63,6 +64,7 @@ li{
   border-radius: 4px;
   cursor: pointer;
   transition: background-color .25s ease-in;
+  display: inline-block;
   &:hover{
     background-color: lighten(black, 10%);
   }

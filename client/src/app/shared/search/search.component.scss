@@ -1,0 +1,11 @@
+@import "../../../mixins";
+.search-input{
+  padding: toRem(5) toRem(10);
+  font-size: toRem(18);
+  outline: none;
+  border: 1px solid gray;
+  border-radius: toRem(5);
+  &__wrapper{
+    padding: toRem(10);
+  }
+}
