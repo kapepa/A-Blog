@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PostService} from "../service/post.service";
+import { interval, timeout, timer } from 'rxjs';
+
 
 @Component({
   selector: 'app-search',
@@ -8,6 +10,7 @@ import {PostService} from "../service/post.service";
 })
 export class SearchComponent implements OnInit {
   private timeout: any;
+  slow$: any;
 
   constructor(
     private postService: PostService,
@@ -18,11 +21,15 @@ export class SearchComponent implements OnInit {
 
   searchInput(e: Event) {
     const target = e.target as HTMLInputElement;
-    clearTimeout(this.timeout);
-    this.timeout = setTimeout(() => {
-      this.postService.receiveAdminAllPost({ where: 'title', where_val: target.value }).add(() => {
-        clearTimeout(this.timeout);
-      })
-    },2000)
+
+    if(this.slow$) this.slow$.unsubscribe();
+    this.slow$ = timer(2000).pipe().subscribe({
+        next: () => {
+          this.postService.receiveAdminAllPost({ where: 'title', where_val: target.value })
+          this.slow$.unsubscribe()
+        },
+        error: console.error,
+      });
   }
+
 }
