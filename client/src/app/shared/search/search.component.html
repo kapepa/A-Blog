@@ -1,3 +1,4 @@
 <div class="search-input__wrapper">
-  <input class="search-input" name="search" type="text" (input)="searchInput($event)">
+<!--  <input class="search-input" name="search" type="text" (input)="searchInput($event)">-->
+  <input class="search-input" name="search" type="text" [(ngModel)]="inputSearch" (ngModelChange)="searchInput()">
 </div>
