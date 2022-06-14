@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IFormData, IPost} from "../../dto";
 import {FormGroup, FormControl, Validators, FormBuilder} from "@angular/forms";
 import {AngularEditorConfig} from "@kolkov/angular-editor";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-form-dynamic',
@@ -64,7 +63,8 @@ export class FormDynamicComponent implements OnInit {
   ngOnInit(): void {
     const prepareValue = this.formData.input.reduce(( accum, input ) => {
       const validators = input.validate?.map((key) => { if(!!key) return this.validate[key] as any } )
-      accum[input.name] = new FormControl('', validators);
+      accum[input.name] = new FormControl(input.value, validators);
+      if( input.name === 'content') this.htmlContent = input.value
       return accum;
     }, {} as any);
 

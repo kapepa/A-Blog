@@ -44,11 +44,15 @@ export class HttpService {
     }
 
     const queryString = param.toString();
-    return this.http.get<IPost[]>(`${this.url}/api/post/admin/all${!!queryString ? '?'+queryString : ''}`)
+    return this.http.get<IPost[]>(`${this.url}/api/post/admin/all${!!queryString ? '?'+queryString : ''}`);
   }
 
   deleteAdminAllPost(id: string): Observable<any>{
-    return this.http.delete(`${this.url}/api/post/admin?id=${id}`)
+    return this.http.delete(`${this.url}/api/post/admin?id=${id}`);
+  }
+
+  receiveOnePost(id: string): Observable<IPost> {
+    return this.http.get<IPost>(`${this.url}/api/post/one?id=${id}`);
   }
 }
 
