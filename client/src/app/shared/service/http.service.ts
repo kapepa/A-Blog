@@ -47,7 +47,7 @@ export class HttpService {
     return this.http.get<IPost[]>(`${this.url}/api/post/admin/all${!!queryString ? '?'+queryString : ''}`)
   }
 
-  deleteAdminAllPost(id: string){
+  deleteAdminAllPost(id: string): Observable<any>{
     return this.http.delete(`${this.url}/api/post/admin?id=${id}`)
   }
 }
