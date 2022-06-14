@@ -57,4 +57,16 @@ export class PostController {
       return new NotFoundException();
     }
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/one')
+  @ApiResponse({ status: 200, description: 'Return one post on id', type: PostDto})
+  @ApiResponse({ status: 404, description: 'NotFoundException'})
+  async onePost(@Query() query): Promise<PostDto | NotFoundException> {
+    try {
+      return await this.postService.findOne('id', query.id, { relations: ['user'] });
+    } catch (e) {
+      return new NotFoundException();
+    }
+  }
 }

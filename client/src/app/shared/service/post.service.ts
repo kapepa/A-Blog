@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpService, IQuerySelect} from "./http.service";
 import {IPost} from "../../dto";
-import {Subject, tap} from "rxjs";
+import {Observable, Subject, tap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
