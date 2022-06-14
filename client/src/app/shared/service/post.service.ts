@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import {HttpService, IQuerySelect} from "./http.service";
-import {IPost} from "../../dto";
-import {Observable, Subject, tap} from "rxjs";
+import { HttpService, IQuerySelect } from "./http.service";
+import { IPost } from "../../dto";
+import { Subject } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
   private $posts: IPost[] = [] as IPost[];
+  private $post: IPost = {} as IPost;
   posts: Subject<IPost[]> = new Subject<IPost[]>();
+  post: Subject<IPost> = new Subject<IPost>();
 
   constructor(
     private httpService: HttpService,
@@ -31,5 +33,12 @@ export class PostService {
       this.$posts.splice(prop.index, 1);
       this.posts.next(this.$posts);
     });
+  }
+
+  receiveOnePost(id: string) {
+    return this.httpService.receiveOnePost(id).subscribe((post: IPost) => {
+      this.$post = post;
+      this.post.next(post);
+    })
   }
 }

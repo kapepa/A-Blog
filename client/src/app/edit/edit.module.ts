@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EditComponent } from './edit.component';
+import { FormDynamicModule } from "../shared/form-dynamic/form-dynamic.module";
 
 
 
@@ -9,7 +10,8 @@ import { EditComponent } from './edit.component';
     EditComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormDynamicModule,
   ]
 })
 export class EditModule { }
