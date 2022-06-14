@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {PostService} from "../service/post.service";
 import { interval, timeout, timer } from 'rxjs';
 
@@ -11,25 +11,38 @@ import { interval, timeout, timer } from 'rxjs';
 export class SearchComponent implements OnInit {
   private timeout: any;
   slow$: any;
+  inputSearch: string = ''
 
   constructor(
     private postService: PostService,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
   }
 
-  searchInput(e: Event) {
-    const target = e.target as HTMLInputElement;
-
+  searchInput() {
     if(this.slow$) this.slow$.unsubscribe();
     this.slow$ = timer(2000).pipe().subscribe({
-        next: () => {
-          this.postService.receiveAdminAllPost({ where: 'title', where_val: target.value })
-          this.slow$.unsubscribe()
-        },
-        error: console.error,
-      });
+      next: () => {
+        this.postService.receiveAdminAllPost({ where: 'title', where_val: this.inputSearch })
+        this.slow$.unsubscribe()
+      },
+      error: console.error,
+    });
   }
+
+
+  // searchInput(e: Event) {
+  //   const target = e.target as HTMLInputElement;
+  //
+  //   if(this.slow$) this.slow$.unsubscribe();
+  //   this.slow$ = timer(2000).pipe().subscribe({
+  //       next: () => {
+  //         this.postService.receiveAdminAllPost({ where: 'title', where_val: target.value })
+  //         this.slow$.unsubscribe()
+  //       },
+  //       error: console.error,
+  //     });
+  // }
 
 }
