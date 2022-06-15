@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from "../shared/service/post.service";
-import { ActivatedRoute } from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {IFormData, IPost} from "../dto";
 import {timeout} from "rxjs";
 
@@ -11,15 +11,18 @@ import {timeout} from "rxjs";
 })
 export class EditComponent implements OnInit {
   formData: IFormData = {} as IFormData;
+  postID: string = '';
 
   constructor(
     private postService: PostService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.postService.receiveOnePost(params['id']);
+      this.postID = params['id'];
+      this.postService.receiveOnePost(this.postID);
       this.postService.post.subscribe((post: IPost) => {
         this.formData = {
           title: 'Edit post',
@@ -44,12 +47,10 @@ export class EditComponent implements OnInit {
     })
   }
 
-  get post () {
-    return this.postService.post;
-  }
-
-  submitForm(data: FormData) {
-
+  submitForm(form: FormData) {
+    this.postService.updatePost(form, this.postID).subscribe(() => {
+      this.router.navigate(['/admin','dashboard'])
+    });
   }
 
 }

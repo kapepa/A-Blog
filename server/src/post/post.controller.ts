@@ -1,6 +1,7 @@
 import {
+  BadRequestException,
   Body,
-  Controller, Delete, Get, NotFoundException,
+  Controller, Delete, Get, NotFoundException, Param, Patch,
   Post, Query,
   Req,
   UnauthorizedException,
@@ -67,6 +68,20 @@ export class PostController {
       return await this.postService.findOne('id', query.id, { relations: ['user'] });
     } catch (e) {
       return new NotFoundException();
+    }
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch(':id')
+  @ApiResponse({ status: 200, description: 'Update post, only owner post', type: PostDto})
+  @ApiResponse({ status: 404, description: 'BadRequestException'})
+  @UseInterceptors(FileInterceptor('file'))
+  async updatePost(@Body() body, @Req() req, @Param() param): Promise<PostDto | BadRequestException | any> {
+    try {
+      const post = JSON.parse(JSON.stringify(body));
+      return this.postService.updatePost(param.id, req.user.id, post);
+    } catch (e) {
+      return new BadRequestException();
     }
   }
 }

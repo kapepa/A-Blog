@@ -54,5 +54,9 @@ export class HttpService {
   receiveOnePost(id: string): Observable<IPost> {
     return this.http.get<IPost>(`${this.url}/api/post/one?id=${id}`);
   }
+
+  updatePost(data: FormData, id: string): Observable<IPost>{
+    return this.http.patch<IPost>(`${this.url}/api/post/${id}`, data);
+  }
 }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService, IQuerySelect } from "./http.service";
 import { IPost } from "../../dto";
-import { Subject } from "rxjs";
+import {map, Subject, tap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -36,9 +36,13 @@ export class PostService {
   }
 
   receiveOnePost(id: string) {
-    return this.httpService.receiveOnePost(id).subscribe((post: IPost) => {
+    return this.httpService.receiveOnePost(id).pipe(map((post) => post)).subscribe((post: IPost) => {
       this.$post = post;
       this.post.next(post);
     })
+  }
+
+  updatePost(form: FormData, id: string){
+    return this.httpService.updatePost(form, id).pipe(tap(console.log));
   }
 }
