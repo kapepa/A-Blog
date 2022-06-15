@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IPost} from "../../dto";
 import {PostService} from "../service/post.service";
-import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-post-short',
@@ -12,7 +11,7 @@ export class PostShortComponent implements OnInit {
   posts: IPost[] = [] as IPost[];
 
   constructor(
-    private postService: PostService
+    private postService: PostService,
   ) { }
 
   ngOnInit(): void {

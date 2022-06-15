@@ -1,0 +1,56 @@
+@import "../../../mixins";
+.alert{
+  padding: toRem(10) toRem(20);
+  background-color: indianred;
+  border-radius: 5px;
+  min-width: 200px;
+  max-width: 250px;
+  &--success{
+    border: 2px solid green;
+  }
+  &--warning{
+    border: 2px solid yellow;
+  }
+  &--wrong{
+    border: 2px solid red;
+  }
+  &__wrapper{
+    position: absolute;
+    top: 2%;
+    right: 5%;
+    row-gap: toRem(8);
+  }
+  &__header{
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 1px 1px 2px white;
+    &--average{
+      font-size: toRem(25);
+    }
+    &--success{
+      color: green;
+    }
+    &--warning{
+      color:yellow;
+    }
+    &--wrong{
+      color: red;
+    }
+  }
+  &__main{
+    padding-top: toRem(7);
+  }
+  &__small{
+    font-size: toRem(18);
+    text-align: center;
+    &--success{
+      color: green;
+    }
+    &--warning{
+      color:yellow;
+    }
+    &--wrong{
+      color: red;
+    }
+  }
+}

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { IInput } from "../../dto";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import {AuthService} from "../service/auth.service";
+import { AuthService } from "../service/auth.service";
+import { AlertService } from "../service/alert.service";
 
 @Component({
   selector: 'app-form-login',
@@ -29,6 +30,7 @@ export class FormLoginComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
@@ -36,15 +38,18 @@ export class FormLoginComponent implements OnInit {
 
   onSubmit(e: Event) {
     e.preventDefault();
-    this.flagSubmit = !this.flagSubmit;
-    this.authService.login(this.loginForm.value).subscribe((token: {access_token: string}) => {
-      this.authService.setAuthorizationToken(token.access_token);
-      this.restForm();
-      this.router.navigate(['/admin','dashboard']);
-      this.flagSubmit = !this.flagSubmit;
-    },() => {
-      this.flagSubmit = !this.flagSubmit;
-    })
+    this.alertService.success('You went to account.')
+    // this.flagSubmit = !this.flagSubmit;
+    // this.authService.login(this.loginForm.value).subscribe((token: {access_token: string}) => {
+    //   this.authService.setAuthorizationToken(token.access_token);
+    //   this.restForm();
+    //   this.router.navigate(['/admin','dashboard']);
+    //   this.flagSubmit = !this.flagSubmit;
+    //   this.alertService.success('You went to account.')
+    // },() => {
+    //   this.flagSubmit = !this.flagSubmit;
+    //   this.alertService.warning('Something went wrong.')
+    // })
   }
 
   restForm(){

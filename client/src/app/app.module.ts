@@ -20,6 +20,7 @@ import { AuthInterceptor } from "./interceptor/auth-interceptor";
 import { FormDynamicModule } from "./shared/form-dynamic/form-dynamic.module";
 import { PostShortModule } from "./shared/post-short/post-short.module";
 import { LoaderModule } from "./shared/loader/loader.module";
+import {AlertModule} from "./shared/alert/alert.module";
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { LoaderModule } from "./shared/loader/loader.module";
     FormDynamicModule,
     PostShortModule,
     LoaderModule,
+    AlertModule,
   ],
   providers: [
     CookieService,
