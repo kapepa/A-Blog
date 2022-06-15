@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {ConflictException, Injectable, NotFoundException} from '@nestjs/common';
 import { UserService } from "../user/user.service";
 import { Post } from "./post.entity";
 import { InjectRepository } from "@nestjs/typeorm";
@@ -46,5 +46,11 @@ export class PostService {
     const defSelection = { order: { created_at: "ASC" }, take: 5, skip: 0, ...other, ...whereCase, ...orderCase } as {};
 
     return await this.postRepository.find({ relations: ['user'], ...defSelection });
+  }
+
+  async updatePost(postID: string, userID: string, post: PostDto): Promise<PostDto | ConflictException> {
+    const currentPost = await this.findOne('id', postID, { relations: ['user'] });
+    if( currentPost.id !== postID || currentPost.user.id !== userID ) return new ConflictException();
+    return await this.postRepository.save({...currentPost, ...post});
   }
 }

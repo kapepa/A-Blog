@@ -19,6 +19,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AuthInterceptor } from "./interceptor/auth-interceptor";
 import { FormDynamicModule } from "./shared/form-dynamic/form-dynamic.module";
 import { PostShortModule } from "./shared/post-short/post-short.module";
+import { LoaderModule } from "./shared/loader/loader.module";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { PostShortModule } from "./shared/post-short/post-short.module";
     HttpClientModule,
     FormDynamicModule,
     PostShortModule,
+    LoaderModule,
   ],
   providers: [
     CookieService,

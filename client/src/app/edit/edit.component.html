@@ -1,3 +1,9 @@
-<div *ngIf="formData.input">
+<div *ngIf="formData.input; else loader">
   <app-form-dynamic [formData]="formData" (submitForm)="submitForm($event)"></app-form-dynamic>
 </div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+
