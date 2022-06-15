@@ -8,6 +8,7 @@ import { CreateComponent } from "../../create/create.component";
 import { EditComponent } from "../../edit/edit.component";
 import { NavAdminModule } from "../nav-admin/nav-admin.module";
 import { AccessAdminGuard } from "../../guard/access-admin.guard";
+import { AlertModule } from "../alert/alert.module";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CommonModule,
     NavAdminModule,
+    AlertModule,
   ],
   exports: [RouterModule],
   providers: [AccessAdminGuard]

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpService, IQuerySelect } from "./http.service";
 import { IPost } from "../../dto";
-import {map, Subject, tap} from "rxjs";
+import { map, Subject, tap } from "rxjs";
+import { AlertService } from "./alert.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class PostService {
 
   constructor(
     private httpService: HttpService,
+    private alertService: AlertService
   ) {
     this.posts.subscribe( posts => this.$posts = posts);
   }
@@ -32,6 +34,9 @@ export class PostService {
     return this.httpService.deleteAdminAllPost(prop.id).subscribe(() => {
       this.$posts.splice(prop.index, 1);
       this.posts.next(this.$posts);
+      this.alertService.success('You deleted post!')
+    },() => {
+      this.alertService.warning("You can't delete post")
     });
   }
 

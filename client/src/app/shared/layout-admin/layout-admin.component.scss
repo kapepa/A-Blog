@@ -1,6 +1,7 @@
 @import "../../../mixins";
 .layout_admin{
   height: 100%;
+  position: relative;
   &__header{
     background-color: indianred;
     padding: toRem(12);

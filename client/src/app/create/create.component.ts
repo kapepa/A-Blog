@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {IFormData} from "../dto";
 import {PostService} from "../shared/service/post.service";
 import {Router} from "@angular/router";
+import {AlertService} from "../shared/service/alert.service";
 
 @Component({
   selector: 'app-create',
@@ -33,6 +34,7 @@ export class CreateComponent implements OnInit {
   constructor(
     private postService: PostService,
     private router: Router,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +43,9 @@ export class CreateComponent implements OnInit {
   submitForm(data: FormData) {
     this.postService.createPost(data).subscribe((data) => {
       this.router.navigate(['/admin', 'dashboard'])
+      this.alertService.success('You success create post.')
+    },() => {
+      this.alertService.warning('Something went wrong.')
     })
   }
 

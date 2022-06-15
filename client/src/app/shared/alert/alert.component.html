@@ -1,0 +1,21 @@
+<div *ngIf="listAlert.size" class="alert__wrapper flex flex-direction-column">
+  <div
+    class="alert"
+    [ngClass]="{'alert--success': alert.type == 'success', 'alert--warning': alert.type == 'warning', 'alert--wrong': alert.type == 'wrong'}"
+    *ngFor="let alert of listAlert.values()"
+  >
+    <header class="alert__header">
+      <h3
+        class="alert__h alert__h--average"
+        [ngClass]="{'alert__header--success': alert.type == 'success', 'alert__header--warning': alert.type == 'warning', 'alert__header--wrong': alert.type == 'wrong'}"
+      >{{alert.type | firstUp}}</h3>
+    </header>
+    <main class="alert__main flex justify-content-center">
+      <small
+        class="alert__small"
+        [ngClass]="{'alert__small--success': alert.type == 'success', 'alert__small--warning': alert.type == 'warning', 'alert__small--wrong': alert.type == 'wrong'}"
+      >{{alert.text}}</small>
+    </main>
+  </div>
+</div>
+

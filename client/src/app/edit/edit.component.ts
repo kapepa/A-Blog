@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from "../shared/service/post.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {IFormData, IPost} from "../dto";
-import {timeout} from "rxjs";
+import {AlertService} from "../shared/service/alert.service";
 
 @Component({
   selector: 'app-edit',
@@ -16,7 +16,8 @@ export class EditComponent implements OnInit {
   constructor(
     private postService: PostService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService,
   ) {}
 
   ngOnInit(): void {
@@ -49,7 +50,10 @@ export class EditComponent implements OnInit {
 
   submitForm(form: FormData) {
     this.postService.updatePost(form, this.postID).subscribe(() => {
-      this.router.navigate(['/admin','dashboard'])
+      this.router.navigate(['/admin','dashboard']);
+      this.alertService.success('You success update own post')
+    },() => {
+      this.alertService.wrong('You are not the author of the post')
     });
   }
 
