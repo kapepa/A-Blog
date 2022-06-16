@@ -16,6 +16,7 @@
     text-align: center;
     font-size: toRem(16);
     align-self: center;
+    padding: 0 toRem(5);
     &--action{
       column-gap: toRem(10);
     }

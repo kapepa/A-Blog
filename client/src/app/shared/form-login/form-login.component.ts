@@ -38,18 +38,17 @@ export class FormLoginComponent implements OnInit {
 
   onSubmit(e: Event) {
     e.preventDefault();
-    this.alertService.success('You went to account.')
-    // this.flagSubmit = !this.flagSubmit;
-    // this.authService.login(this.loginForm.value).subscribe((token: {access_token: string}) => {
-    //   this.authService.setAuthorizationToken(token.access_token);
-    //   this.restForm();
-    //   this.router.navigate(['/admin','dashboard']);
-    //   this.flagSubmit = !this.flagSubmit;
-    //   this.alertService.success('You went to account.')
-    // },() => {
-    //   this.flagSubmit = !this.flagSubmit;
-    //   this.alertService.warning('Something went wrong.')
-    // })
+    this.flagSubmit = !this.flagSubmit;
+    this.authService.login(this.loginForm.value).subscribe((token: {access_token: string}) => {
+      this.authService.setAuthorizationToken(token.access_token);
+      this.restForm();
+      this.router.navigate(['/admin','dashboard']);
+      this.flagSubmit = !this.flagSubmit;
+      this.alertService.success('You went to account.')
+    },() => {
+      this.flagSubmit = !this.flagSubmit;
+      this.alertService.warning('Something went wrong.')
+    })
   }
 
   restForm(){
