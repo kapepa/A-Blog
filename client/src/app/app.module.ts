@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,7 +20,11 @@ import { AuthInterceptor } from "./interceptor/auth-interceptor";
 import { FormDynamicModule } from "./shared/form-dynamic/form-dynamic.module";
 import { PostShortModule } from "./shared/post-short/post-short.module";
 import { LoaderModule } from "./shared/loader/loader.module";
-import {AlertModule} from "./shared/alert/alert.module";
+import { AlertModule } from "./shared/alert/alert.module";
+import { registerLocaleData } from "@angular/common";
+import localeRu from '@angular/common/locales/ru';
+
+registerLocaleData(localeRu, 'ru')
 
 @NgModule({
   declarations: [
@@ -53,6 +57,10 @@ import {AlertModule} from "./shared/alert/alert.module";
       useClass: AuthInterceptor,
       multi: true,
     },
+    {
+      provide: LOCALE_ID,
+      useValue: 'ru',
+    }
   ],
   bootstrap: [AppComponent]
 })
