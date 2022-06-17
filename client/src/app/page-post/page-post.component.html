@@ -1,12 +1,17 @@
-<section class="post__section">
+<section *ngIf="post$ | async as post" class="post__section">
   <header class="post__header">
     <h3 class="post__h post__h--average">{{ post.title }}</h3>
   </header>
   <div class="post__info flex flex-direction-column">
     <a class="post__link" routerLink="/">Back</a>
-    <small class="post__date">{{ post.date | date }}</small>
+    <small class="post__date">{{ post.created_at | date }}</small>
   </div>
-  <article class="post__article flex flex-direction-column" [innerHTML]="post.text | paragraph: 'post__p'">
-<!--    <p class="post__p">{{ post.text | paragraph:'post__p' }}</p>-->
-  </article>
+<!--  <article class="post__article flex flex-direction-column" [innerHTML]="post.content | paragraph: 'post__p'">-->
+<!--&lt;!&ndash;    <p class="post__p">{{ post.text | paragraph:'post__p' }}</p>&ndash;&gt;-->
+<!--  </article>-->
+  <article [innerHTML]="post.content" ></article>
 </section>
+
+<ng-template>
+  <app-loader></app-loader>
+</ng-template>

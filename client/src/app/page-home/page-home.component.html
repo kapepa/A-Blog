@@ -1,2 +1,8 @@
-<p>page-home works!</p>
-<app-post></app-post>
+<section *ngIf="posts$ | async as posts ; else loader" class="flex flex-direction-column align-items-center align-items-stretch">
+  <app-post *ngFor="let post of posts; index as i" [post]="post"></app-post>
+</section>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+

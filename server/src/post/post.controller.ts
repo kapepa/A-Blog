@@ -35,11 +35,11 @@ export class PostController {
     }
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(ExistAuthGuard)
   @Get('/admin/all')
   @ApiResponse({ status: 200, description: 'Receive all post for admin', type: PostDto })
   @ApiResponse({ status: 400, description: 'NotFoundException'})
-  async receiveAdminAllPost(@Query() query, @Req() req): Promise<any> {
+  async receiveAdminAllPost(@Query() query): Promise<PostDto[] | NotFoundException> {
     try {
       return await this.postService.receiveAllPost(query);
     } catch (e){
@@ -59,7 +59,7 @@ export class PostController {
     }
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(ExistAuthGuard)
   @Get('/one')
   @ApiResponse({ status: 200, description: 'Return one post on id', type: PostDto})
   @ApiResponse({ status: 404, description: 'NotFoundException'})
