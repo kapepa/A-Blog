@@ -1,11 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
-interface IPost {
-  id: string,
-  title: string,
-  author: string,
-  date: Date
-}
+import { Component, Input, OnInit } from '@angular/core';
+import { IPost } from "../../dto";
 
 @Component({
   selector: 'app-post',
@@ -13,14 +7,12 @@ interface IPost {
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-  posts: IPost[] = [
-    { id: 'asd12312', title: 'Text Name One', author: 'anybody people', date: new Date() },
-    { id: '34233422', title: 'Text Name Two', author: 'some man', date: new Date() },
-  ]
+  @Input() post!: IPost;
 
   constructor() { }
 
   ngOnInit(): void {
+    // console.log(this.post)
   }
 
 }

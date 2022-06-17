@@ -26,7 +26,7 @@ export class FormDynamicComponent implements OnInit {
     maxHeight: '15rem',
     placeholder: 'Enter text here...',
     translate: 'no',
-    sanitize: true,
+    sanitize: false,
     toolbarPosition: 'top',
     defaultFontName: 'Comic Sans MS',
     defaultFontSize: '4',
@@ -35,6 +35,7 @@ export class FormDynamicComponent implements OnInit {
       {
         name: 'quote',
         class: 'quote',
+        tag: 'quote',
       },
       {
         name: 'redText',
@@ -49,7 +50,7 @@ export class FormDynamicComponent implements OnInit {
     toolbarHiddenButtons: [[],[
       'insertVideo',
       'fontSize',
-      'textColor',
+      // 'textColor',
       'backgroundColor',
     ]]
   }

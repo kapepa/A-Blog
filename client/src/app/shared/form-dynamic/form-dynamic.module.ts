@@ -15,7 +15,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     FormsModule,
     ReactiveFormsModule,
     ButtonModule,
-    AngularEditorModule
+    AngularEditorModule,
   ],
   exports: [
     FormDynamicComponent

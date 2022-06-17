@@ -19,7 +19,7 @@ export interface IPost{
   user?: IUser;
   title: string;
   content: string;
-  created_at: Date;
+  created_at?: Date;
 }
 
 export interface IFormData{

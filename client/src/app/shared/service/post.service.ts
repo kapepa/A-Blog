@@ -30,6 +30,10 @@ export class PostService {
     })
   }
 
+  receiveAllPost(query?: IQuerySelect) {
+    return this.httpService.receiveAdminAllPost();
+  }
+
   deleteAdminAllPost(prop: {id: string, index: number}) {
     return this.httpService.deleteAdminAllPost(prop.id).subscribe(() => {
       this.$posts.splice(prop.index, 1);
@@ -45,6 +49,10 @@ export class PostService {
       this.$post = post;
       this.post.next(post);
     })
+  }
+
+  getOnePost(id: string) {
+    return this.httpService.receiveOnePost(id)
   }
 
   updatePost(form: FormData, id: string){
