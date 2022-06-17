@@ -23,6 +23,8 @@ import { LoaderModule } from "./shared/loader/loader.module";
 import { AlertModule } from "./shared/alert/alert.module";
 import { registerLocaleData } from "@angular/common";
 import localeRu from '@angular/common/locales/ru';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 registerLocaleData(localeRu, 'ru')
 
@@ -49,6 +51,12 @@ registerLocaleData(localeRu, 'ru')
     PostShortModule,
     LoaderModule,
     AlertModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [
     CookieService,
