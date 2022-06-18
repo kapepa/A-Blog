@@ -1,18 +1,26 @@
 version: '3.8'
 
 services:
+#  nginx:
+#    hostname: nginx
+#    container_name: nginx
+#    restart: always
+#    build:
+#      context: ./nginx
+#      dockerfile: ./Dockerfile
+#    ports:
+#      - "80:80"
+#    depends_on:
+#      - angular
   angular:
-    hostname: angular,
     container_name: angular
     restart: always
+    hostname: angular
     build:
       context: ./client
       dockerfile: ./Dockerfile
-    command: sh -c "npm start"
     ports:
-      - "4200:4200"
-    depends_on:
-      - nestjs
+      - "80:80"
   nestjs:
     hostname: nestjs
     container_name: nestjs
